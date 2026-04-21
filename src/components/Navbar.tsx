@@ -131,7 +131,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5">
             <img
-              src="/images/logo-fr.webp"
+              src="/images/logo-fr.svg"
               alt="Fandy Ramadhan"
               className="h-8"
             />
