@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/images/favicon-fr.webp" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Performance: Preload hero visual & preconnect to API-like endpoints -->
+    <link
+      rel="preload"
+      as="image"
+      href="/images/hero-3d.webp"
+      fetchpriority="high" />
+    <link rel="dns-prefetch" href="https://wa.me" />
+    <link rel="preconnect" href="https://wa.me" crossorigin />
+
+    <!-- Primary Meta Tags -->
+    <title>Fandy Ramadhan · Senior Product Designer</title>
+    <meta name="title" content="Fandy Ramadhan · Senior Product Designer" />
+    <meta
+      name="description"
+      content="Senior Product Designer with 7+ years shipping SaaS products end to end. Design, motion, and frontend code accelerated by AI workflows with Claude, Gemini, and Figma Make." />
+    <meta
+      name="keywords"
+      content="product designer, senior product designer, UI UX designer, SaaS designer, Saas explainer video, motion designer, frontend developer, AI design workflow, Figma, React, Indonesia designer" />
+    <meta name="author" content="Fandy Ramadhan" />
+
+    <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://fandyramadhan.com/" />
+    <meta
+      property="og:title"
+      content="Fandy Ramadhan · Senior Product Designer" />
+    <meta
+      property="og:description"
+      content="Senior Product Designer with 7+ years shipping SaaS products end to end. Design, motion, and frontend code accelerated by AI workflows." />
+    <meta
+      property="og:image"
+      content="https://fandyramadhan.com/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Fandy Ramadhan · Senior Product Designer" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="Fandy Ramadhan Portfolio" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://fandyramadhan.com/" />
+    <meta
+      name="twitter:title"
+      content="Fandy Ramadhan · Senior Product Designer" />
+    <meta
+      name="twitter:description"
+      content="Senior Product Designer with 7+ years shipping SaaS products end to end. Design, motion, and frontend code accelerated by AI workflows." />
+    <meta
+      name="twitter:image"
+      content="https://fandyramadhan.com/og-image.jpg" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://fandyramadhan.com/" />
+
+    <!-- Theme -->
+    <meta name="theme-color" content="#0b0b0f" />
+
+    <!-- Structured Data (Person) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Fandy Ramadhan",
+        "jobTitle": "Senior Product Designer",
+        "url": "https://fandyramadhan.com/",
+        "image": "https://fandyramadhan.com/images/fandy-photo.webp",
+        "description": "Senior Product Designer with 7+ years shipping SaaS products end to end, combining design, motion, and frontend code accelerated by AI workflows.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Depok",
+          "addressCountry": "Indonesia"
+        },
+        "sameAs": [
+          "https://linkedin.com/in/fandyramadhan",
+          "https://dribbble.com/fandyramadhan",
+          "https://behance.net/fandyramadhan2",
+          "https://instagram.com/fandyyramadhan"
+        ],
+        "knowsAbout": [
+          "Product Design",
+          "Product Designer",
+          "UI/UX Design",
+          "UI/UX Designer",
+          "SaaS Motion Design",
+          "Saas Explainer Videos",
+          "Frontend Development",
+          "AI-Assisted Design Workflow"
+        ],
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Linkit360"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      window.onerror = function (msg, url, line, col, err) {
+        document.getElementById("root").innerHTML =
+          '<pre style="color:red;padding:20px;font-size:14px;">ERROR: ' +
+          msg +
+          "\nFile: " +
+          url +
+          "\nLine: " +
+          line +
+          ":" +
+          col +
+          "\n" +
+          (err && err.stack ? err.stack : "") +
+          "</pre>";
+      };
+      window.addEventListener("unhandledrejection", function (e) {
+        document.getElementById("root").innerHTML =
+          '<pre style="color:red;padding:20px;font-size:14px;">PROMISE ERROR: ' +
+          (e.reason && e.reason.stack ? e.reason.stack : e.reason) +
+          "</pre>";
+      });
+    </script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

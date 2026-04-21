@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- ═══════════════ TOP LEVEL ═══════════════ -->
+
+  <url>
+    <loc>https://fandyramadhan.com/</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://fandyramadhan.com/images/hero-3d.webp</image:loc>
+      <image:title>Fandy Ramadhan · Senior Product Designer</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://fandyramadhan.com/images/fandy-photo.webp</image:loc>
+      <image:title>Portrait of Fandy Ramadhan</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://fandyramadhan.com/about</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://fandyramadhan.com/projects</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- ═══════════════ SERVICE LANDING PAGES ═══════════════ -->
+  <!-- Dedicated SEO pages for keyword-targeted discoverability -->
+
+  <url>
+    <loc>https://fandyramadhan.com/services/product-designer</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://fandyramadhan.com/services/ui-ux-designer</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://fandyramadhan.com/services/saas-motion-designer</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://fandyramadhan.com/services/ai-assisted-design</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- ═══════════════ PROJECT DETAIL PAGES ═══════════════ -->
+
+  <url>
+    <loc>https://fandyramadhan.com/projects/lulladream</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://fandyramadhan.com/images/projects/lulladream/hero.webp</image:loc>
+      <image:title>Lulladreams · AI Voice Cloning bedtime story app</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://fandyramadhan.com/projects/bicarakan-id</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://fandyramadhan.com/images/projects/bicarakan-id/hero.webp</image:loc>
+      <image:title>Bicarakan.id · Mental health counseling app</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://fandyramadhan.com/projects/qfast</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://fandyramadhan.com/images/projects/qfast/thumbnail.webp</image:loc>
+      <image:title>Q-Fast · Virtual queue management SaaS</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://fandyramadhan.com/projects/speakeasy</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://fandyramadhan.com/images/projects/speakeasy/hero.webp</image:loc>
+      <image:title>Speakeasy · AI-powered language learning app</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://fandyramadhan.com/projects/booksnap</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://fandyramadhan.com/images/projects/booksnap/hero.webp</image:loc>
+      <image:title>Booksnap · AI-powered audiobook experience</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://fandyramadhan.com/projects/kimee</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://fandyramadhan.com/images/projects/kimee/hero.webp</image:loc>
+      <image:title>Kimee · AI-powered educational platform for kids</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://fandyramadhan.com/projects/oke-garden</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://fandyramadhan.com/images/projects/oke-garden/hero.webp</image:loc>
+      <image:title>Oke Garden · Garden services platform</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://fandyramadhan.com/projects/fantasy-eleven</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://fandyramadhan.com/images/projects/fantasy-eleven/hero.webp</image:loc>
+      <image:title>Fantasy Eleven · Fantasy football and prediction</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://fandyramadhan.com/projects/criptofy</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://fandyramadhan.com/images/projects/criptofy/hero.webp</image:loc>
+      <image:title>Criptofy · Premium crypto trading landing page</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://fandyramadhan.com/projects/auto-health-care</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://fandyramadhan.com/images/projects/auto-health-care/hero.webp</image:loc>
+      <image:title>Auto Health Care · Hospital program monitoring dashboard</image:title>
+    </image:image>
+  </url>
+
+</urlset>
