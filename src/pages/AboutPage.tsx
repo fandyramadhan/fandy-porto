@@ -138,6 +138,7 @@ const AboutPage = () => {
                 <img
                   src="/images/fandy-photo.webp"
                   alt="Portrait of Fandy Ramadhan, Senior Product Designer at Linkit360"
+                  title="Fandy Ramadhan — Senior Product Designer at Linkit360"
                   fetchPriority="high"
                   decoding="async"
                   className="w-full h-full object-cover"

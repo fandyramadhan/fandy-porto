@@ -325,6 +325,7 @@ const ProjectDetail = () => {
                   <img
                     src={`/images/projects/${project.id}/hero.webp`}
                     alt={`${project.title} hero visual for the case study by Fandy Ramadhan`}
+                    title={`${project.title} — ${project.subtitle}`}
                     fetchPriority="high"
                     decoding="async"
                     className="absolute inset-0 w-full h-full object-cover"
@@ -589,6 +590,7 @@ const ProjectDetail = () => {
                           <img
                             src={`/images/projects/${project.id}/gallery-${item}.webp`}
                             alt={`${project.title} gallery preview ${galleryLabels[idx]}`}
+                            title={`${project.title} — ${galleryLabels[idx]}`}
                             loading="lazy"
                             decoding="async"
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -832,6 +834,7 @@ const ProjectDetail = () => {
                       <img
                         src={`/images/projects/${project.id}/gallery-${lightboxIndex + 1}.webp`}
                         alt={`${project.title} full size ${galleryLabels[lightboxIndex]}`}
+                        title={`${project.title} — ${galleryLabels[lightboxIndex]}`}
                         loading="lazy"
                         decoding="async"
                         className="w-full h-full object-contain"

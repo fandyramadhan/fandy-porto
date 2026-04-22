@@ -5,11 +5,12 @@
     <link rel="icon" type="image/webp" href="/images/favicon-fr.webp" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Performance: Preload hero visual & preconnect to API-like endpoints -->
+    <!-- Performance: Preload hero visual (desktop only, it is hidden below lg breakpoint) -->
     <link
       rel="preload"
       as="image"
       href="/images/hero-3d.webp"
+      media="(min-width: 1024px)"
       fetchpriority="high" />
     <link rel="dns-prefetch" href="https://wa.me" />
     <link rel="preconnect" href="https://wa.me" crossorigin />
@@ -104,28 +105,6 @@
   </head>
   <body>
     <div id="root"></div>
-    <script>
-      window.onerror = function (msg, url, line, col, err) {
-        document.getElementById("root").innerHTML =
-          '<pre style="color:red;padding:20px;font-size:14px;">ERROR: ' +
-          msg +
-          "\nFile: " +
-          url +
-          "\nLine: " +
-          line +
-          ":" +
-          col +
-          "\n" +
-          (err && err.stack ? err.stack : "") +
-          "</pre>";
-      };
-      window.addEventListener("unhandledrejection", function (e) {
-        document.getElementById("root").innerHTML =
-          '<pre style="color:red;padding:20px;font-size:14px;">PROMISE ERROR: ' +
-          (e.reason && e.reason.stack ? e.reason.stack : e.reason) +
-          "</pre>";
-      });
-    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

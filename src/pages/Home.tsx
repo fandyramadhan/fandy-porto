@@ -21,7 +21,6 @@ const Home = () => {
     title: "Fandy Ramadhan · Senior Product Designer",
     description:
       "Senior Product Designer with 7+ years shipping SaaS products end to end. Design, motion, and frontend code accelerated by AI workflows with Claude, Gemini, and Figma Make.",
-    canonicalPath: "/",
   });
 
   return (

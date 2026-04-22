@@ -133,6 +133,7 @@ const Navbar = () => {
             <img
               src="/images/logo-fr.svg"
               alt="Fandy Ramadhan"
+              title="Fandy Ramadhan"
               className="h-8"
             />
             <span className="text-lg font-bold tracking-tight text-[#f5f5f5]">

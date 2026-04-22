@@ -1,28 +1,8 @@
-import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import gsap from "gsap";
 import { stats, siteConfig } from "../data/siteData";
 import { FaWhatsapp } from "react-icons/fa";
 
 const Hero = () => {
-  const headingRef = useRef<HTMLHeadingElement>(null);
-
-  useEffect(() => {
-    if (!headingRef.current) return;
-    const lines = headingRef.current.querySelectorAll(".hero-line");
-
-    // Set initial state explicitly, then animate TO visible
-    gsap.set(lines, { opacity: 0, y: 80 });
-    gsap.to(lines, {
-      opacity: 1,
-      y: 0,
-      stagger: 0.12,
-      duration: 1,
-      ease: "power4.out",
-      delay: 0.2,
-    });
-  }, []);
-
   return (
     <section className="relative overflow-hidden">
       {/* Main hero content */}
@@ -31,16 +11,14 @@ const Hero = () => {
         <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-8 lg:gap-12 items-center min-h-[70vh]">
           {/* Left — Heading */}
           <div>
-            <h1
-              ref={headingRef}
-              className="text-[clamp(2.2rem,5.5vw,4.5rem)] font-bold leading-[1.1] tracking-tight text-text-primary">
+            <h1 className="text-[clamp(2.2rem,5.5vw,4.5rem)] font-bold leading-[1.1] tracking-tight text-text-primary">
               I design, animate, and ship SaaS products.
             </h1>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.2, duration: 0.6 }}
+              transition={{ delay: 0.3, duration: 0.5 }}
               className="text-text-muted text-sm md:text-base max-w-md leading-relaxed mt-6">
               Senior Product Designer with 7+ years working across design,
               motion, and frontend code. AI-assisted workflow with Claude,
@@ -55,7 +33,7 @@ const Hero = () => {
                 rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.9, duration: 0.6 }}
+                transition={{ delay: 0.45, duration: 0.5 }}
                 className="inline-flex items-center gap-2 bg-accent text-bg text-sm md:text-base font-semibold rounded-full px-6 py-3 hover:bg-accent-dark transition">
                 <FaWhatsapp className="w-4 h-4" />
                 Chat on WhatsApp
@@ -64,7 +42,7 @@ const Hero = () => {
               <motion.p
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 1.1, duration: 0.6 }}
+                transition={{ delay: 0.6, duration: 0.5 }}
                 className="text-text-muted text-xs mt-3">
                 Usually replies within 24 hours
               </motion.p>
@@ -81,6 +59,7 @@ const Hero = () => {
               <motion.img
                 src="/images/hero-3d.webp"
                 alt="Abstract 3D hero visual for Fandy Ramadhan's Senior Product Designer portfolio"
+                title="Fandy Ramadhan — Senior Product Designer portfolio"
                 fetchPriority="high"
                 decoding="async"
                 className="w-full h-auto object-contain drop-shadow-2xl"

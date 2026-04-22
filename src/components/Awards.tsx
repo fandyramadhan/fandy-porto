@@ -119,6 +119,7 @@ const Awards = () => {
                     <img
                       src={award.image}
                       alt={`${award.title} certificate from ${award.event}`}
+                      title={`${award.title} · ${award.event}`}
                       loading="lazy"
                       decoding="async"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -225,6 +226,7 @@ const Awards = () => {
                     <img
                       src={awards[lightboxIndex].image}
                       alt={`${awards[lightboxIndex].title} certificate from ${awards[lightboxIndex].event}`}
+                      title={`${awards[lightboxIndex].title} · ${awards[lightboxIndex].event}`}
                       loading="lazy"
                       decoding="async"
                       className="w-full h-full object-contain bg-white"

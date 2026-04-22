@@ -63,6 +63,7 @@ const Work = () => {
                   <img
                     src={`/images/projects/${project.id}/thumbnail.webp`}
                     alt={`${project.title} project thumbnail by Fandy Ramadhan`}
+                    title={`${project.title} — ${project.subtitle}`}
                     loading="lazy"
                     decoding="async"
                     className="absolute inset-0 w-full h-full object-cover z-[1]"

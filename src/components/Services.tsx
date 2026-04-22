@@ -93,7 +93,10 @@ const Services = () => {
                         <div className="rounded-xl bg-surface-2 border border-border aspect-video overflow-hidden relative">
                           <img
                             src={`/images/services/service-${index + 1}.webp`}
-                            alt={service.title}
+                            alt={`${service.title} service illustration`}
+                            title={service.title}
+                            loading="lazy"
+                            decoding="async"
                             className="w-full h-full object-cover"
                             onError={(e) => {
                               const target = e.target as HTMLImageElement;
