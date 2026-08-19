@@ -5,6 +5,8 @@ type Meta = {
   description?: string;
   canonicalPath?: string;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  /** Overrides <html lang> and og:locale while the route is mounted. */
+  lang?: string;
 };
 
 const SITE_URL =
@@ -63,9 +65,11 @@ export function useDocumentMeta({
   description,
   canonicalPath,
   jsonLd,
+  lang,
 }: Meta) {
   useEffect(() => {
     const prevTitle = document.title;
+    const prevLang = document.documentElement.lang;
     document.title = title;
     setMeta("title", title);
     setMeta("og:title", title, "property");
@@ -81,6 +85,11 @@ export function useDocumentMeta({
       setCanonical(canonicalPath);
     }
 
+    if (lang) {
+      document.documentElement.lang = lang;
+      setMeta("og:locale", lang.replace("-", "_"), "property");
+    }
+
     if (jsonLd) {
       setJsonLd(jsonLd);
     } else {
@@ -89,7 +98,8 @@ export function useDocumentMeta({
 
     return () => {
       document.title = prevTitle;
+      if (lang) document.documentElement.lang = prevLang;
       removeJsonLd();
     };
-  }, [title, description, canonicalPath, jsonLd]);
+  }, [title, description, canonicalPath, jsonLd, lang]);
 }

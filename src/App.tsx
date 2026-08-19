@@ -13,6 +13,8 @@ const Projects = lazy(() => import("./pages/Projects"));
 const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
 const ServicesPage = lazy(() => import("./pages/Services"));
 const ServiceDetail = lazy(() => import("./pages/ServiceDetail"));
+const Event = lazy(() => import("./pages/Event"));
+const EventPortfolio = lazy(() => import("./pages/EventPortfolio"));
 
 const ProjectDetailWrapper = () => {
   const { id } = useParams<{ id: string }>();
@@ -37,6 +39,8 @@ function App() {
           <Route path="/projects/:id" element={<ProjectDetailWrapper />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/services/:slug" element={<ServiceDetail />} />
+          <Route path="/event" element={<Event />} />
+          <Route path="/event-portfolio" element={<EventPortfolio />} />
         </Routes>
       </Suspense>
     </Router>

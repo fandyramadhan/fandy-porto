@@ -34,6 +34,20 @@
     <priority>0.9</priority>
   </url>
 
+  <url>
+    <loc>https://fandyramadhan.com/event</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://fandyramadhan.com/event-portfolio</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- ═══════════════ SERVICE LANDING PAGES ═══════════════ -->
   <!-- Dedicated SEO pages for keyword-targeted discoverability -->
 

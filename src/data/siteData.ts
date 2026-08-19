@@ -399,6 +399,7 @@ export const footerLinks = {
     { label: "About", href: "/about" },
     { label: "Projects", href: "/projects" },
     { label: "Services", href: "/services" },
+    { label: "Website Event", href: "/event" },
   ],
   elsewhere: [
     { label: "Dribbble", href: "https://dribbble.com/fandyramadhan" },
