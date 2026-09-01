@@ -257,7 +257,7 @@ export const eventFaqs = [
   {
     question: "Bisa bikin buat event di luar kota?",
     answer:
-      "Bisa, semua prosesnya online jadi lokasi nggak ngaruh. Mau event lu di Jakarta, Depok, atau Jabodetabek, sampai Bandung, Surabaya, Jogja, Bali, atau kota lain di Indonesia, alurnya sama: brief lewat WhatsApp atau video call, revisi online, dan halaman langsung live begitu selesai. Nggak perlu ketemu langsung sama sekali.",
+      "Bisa, semua prosesnya online jadi lokasi nggak ngaruh. Mau event lu di Jakarta, Depok, atau Jabodetabek, sampai Bandung, Surabaya, Jogja, Bali, atau kota lain di Indonesia, alurnya sama: brief lewat WhatsApp, revisi online, dan halaman langsung live begitu selesai. Nggak perlu ketemu langsung sama sekali.",
   },
   {
     question: "Bisa request desain sesuai referensi?",
