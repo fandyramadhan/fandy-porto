@@ -56,10 +56,12 @@ export const eventPromo = {
 };
 
 /**
- * Plain-language explanation of the service, sitting near the bottom of the
- * page. It gives search engines real sentences to match long-tail queries
- * against ("bikin website seminar kampus", "landing page fun run"), and gives
- * visitors who scrolled that far the full picture in one block.
+ * Structured-data copy only — nothing here is rendered on the page.
+ *
+ * Feeds the Service/WebPage `description` and the `hasOfferCatalog` list in
+ * the JSON-LD, which is how search engines learn the full range of events
+ * these pages get built for. The wording visitors actually read lives in
+ * `eventTypes` and `eventFaqs`.
  */
 export const eventAbout = {
   eyebrow: "Tentang Layanan Ini",
@@ -88,12 +90,12 @@ export const eventTypes = [
   {
     name: "Webinar, Workshop & Bootcamp",
     description:
-      "Sesi online maupun on-site: info pembicara, jadwal, dan link daftar dalam satu halaman. Cocok buat batch berulang, template dipakai lagi tiap angkatan baru.",
+      "Sesi online maupun on-site: info pembicara, jadwal, dan link daftar dalam satu halaman. Cocok buat kelas online dan batch berulang, template dipakai lagi tiap angkatan baru.",
   },
   {
     name: "Konferensi & Seminar",
     description:
-      "Multi-section: pembicara, sponsor, jadwal beberapa hari, tiket bertingkat.",
+      "Multi-section buat seminar, konferensi, atau summit beberapa hari: pembicara, sponsor, jadwal per hari, dan tiket bertingkat. Cocok juga buat pameran dan job fair.",
   },
   {
     name: "Event Sport & Perlombaan",
@@ -108,7 +110,7 @@ export const eventTypes = [
   {
     name: "Peluncuran Produk & Komunitas",
     description:
-      "Launching produk digital, meet-up komunitas, atau gathering member.",
+      "Launching produk digital, meet-up komunitas, gathering member, sampai acara internal perusahaan seperti reuni dan halal bihalal.",
   },
   {
     name: "Konser & Festival",

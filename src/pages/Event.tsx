@@ -711,51 +711,6 @@ const Event = () => {
         {/* ── Testimoni ── */}
         <EventTestimonials />
 
-        {/* ── Service explanation (also the page's long-form SEO copy) ── */}
-        <section className="py-20 px-6 lg:px-12 border-t border-border">
-          <div className="max-w-7xl mx-auto grid lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-16">
-            <motion.div {...inView} transition={{ duration: 0.6 }}>
-              <span className="text-accent text-xs uppercase tracking-widest font-semibold">
-                {eventAbout.eyebrow}
-              </span>
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-text-primary mt-3 leading-tight">
-                {eventAbout.heading}
-              </h2>
-            </motion.div>
-
-            <motion.div
-              {...inView}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="max-w-2xl">
-              {eventAbout.paragraphs.map((paragraph) => (
-                <p
-                  key={paragraph.slice(0, 40)}
-                  className="text-text-muted text-sm md:text-base leading-relaxed mb-5">
-                  {paragraph}
-                </p>
-              ))}
-
-              <h3 className="text-text-primary font-bold text-base mt-8 mb-4">
-                {eventAbout.listHeading}
-              </h3>
-              <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-3">
-                {eventAbout.eventList.map((item) => (
-                  <li key={item} className="flex items-start gap-2.5">
-                    <Check className="w-4 h-4 text-accent shrink-0 mt-0.5" />
-                    <span className="text-text-muted text-sm leading-relaxed">
-                      {item}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-
-              <p className="text-text-muted text-sm leading-relaxed mt-6">
-                {eventAbout.closing}
-              </p>
-            </motion.div>
-          </div>
-        </section>
-
         {/* ── Final CTA ── */}
         <section className="py-24 px-6 lg:px-12 border-t border-border">
           <div className="max-w-7xl mx-auto text-center">
