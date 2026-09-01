@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { CalendarClock } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
-import { eventWhatsappUrl } from "../data/eventData";
+import WhatsAppCta from "./WhatsAppCta";
 
 type Props = {
   /** Extra classes for spacing, since each page places this differently. */
@@ -41,14 +41,13 @@ const EventScarcityBanner = ({ className = "" }: Props) => (
       </div>
     </div>
 
-    <a
-      href={eventWhatsappUrl("cek slot minggu ini")}
-      target="_blank"
-      rel="noopener noreferrer"
+    <WhatsAppCta
+      source="scarcity-banner"
+      context="cek slot minggu ini"
       className="relative inline-flex items-center justify-center gap-2 bg-accent text-bg text-sm font-semibold rounded-full px-6 py-3 hover:bg-accent-dark transition shrink-0 w-full md:w-auto">
       <FaWhatsapp className="w-4 h-4" />
       Cek Slot Minggu Ini
-    </a>
+    </WhatsAppCta>
   </motion.div>
 );
 

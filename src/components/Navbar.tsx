@@ -130,11 +130,13 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto px-6 lg:px-12 py-5 flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5">
+            {/* Decorative: the wordmark next to it already names the site. */}
             <img
               src="/images/logo-fr.svg"
-              alt="Fandy Ramadhan"
-              title="Fandy Ramadhan"
-              className="h-8"
+              alt=""
+              width="32"
+              height="32"
+              className="h-8 w-auto"
             />
             <span className="text-lg font-bold tracking-tight text-[#f5f5f5]">
               Fandy Ramadhan

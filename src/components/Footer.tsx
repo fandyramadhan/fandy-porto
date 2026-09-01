@@ -14,9 +14,9 @@ const Footer = () => {
         <div className="grid grid-cols-2 md:grid-cols-3 gap-8 mb-16">
           {/* Quick Links */}
           <div>
-            <h4 className="text-text-primary font-semibold text-sm mb-4">
+            <h3 className="text-text-primary font-semibold text-sm mb-4">
               Quick Links
-            </h4>
+            </h3>
             {footerLinks.quickLinks.map((link) => (
               <a
                 key={link.label}
@@ -29,9 +29,9 @@ const Footer = () => {
 
           {/* Elsewhere */}
           <div>
-            <h4 className="text-text-primary font-semibold text-sm mb-4">
+            <h3 className="text-text-primary font-semibold text-sm mb-4">
               Elsewhere
-            </h4>
+            </h3>
             {footerLinks.elsewhere.map((link) => (
               <a
                 key={link.label}
@@ -46,25 +46,42 @@ const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h4 className="text-text-primary font-semibold text-sm mb-4">
+            <h3 className="text-text-primary font-semibold text-sm mb-4">
               Contact
-            </h4>
+            </h3>
             <p className="text-text-muted text-sm mb-2">{siteConfig.phone}</p>
             <p className="text-text-muted text-sm mb-4">{siteConfig.email}</p>
             <div className="flex gap-3 mt-2">
               {[
-                { icon: FaBehance, href: siteConfig.socials.behance },
-                { icon: FaDribbble, href: siteConfig.socials.dribbble },
-                { icon: FaLinkedinIn, href: siteConfig.socials.linkedin },
-                { icon: FaInstagram, href: siteConfig.socials.instagram },
-              ].map((social, i) => (
+                {
+                  icon: FaBehance,
+                  href: siteConfig.socials.behance,
+                  label: "Behance",
+                },
+                {
+                  icon: FaDribbble,
+                  href: siteConfig.socials.dribbble,
+                  label: "Dribbble",
+                },
+                {
+                  icon: FaLinkedinIn,
+                  href: siteConfig.socials.linkedin,
+                  label: "LinkedIn",
+                },
+                {
+                  icon: FaInstagram,
+                  href: siteConfig.socials.instagram,
+                  label: "Instagram",
+                },
+              ].map((social) => (
                 <a
-                  key={i}
+                  key={social.label}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={`${social.label} (buka di tab baru)`}
                   className="w-9 h-9 rounded-full border border-border flex items-center justify-center text-text-muted hover:text-accent hover:border-accent transition">
-                  <social.icon className="w-3.5 h-3.5" />
+                  <social.icon className="w-3.5 h-3.5" aria-hidden="true" />
                 </a>
               ))}
             </div>
@@ -81,11 +98,11 @@ const Footer = () => {
 
         {/* Giant Name */}
         <div className="mt-8 overflow-hidden">
-          <h2
+          <div
+            aria-hidden="true"
             data-gsap="fade-up"
-            className="text-[8rem] md:text-[12rem] lg:text-[16rem] font-black text-text-primary/5 leading-none tracking-tighter select-none whitespace-nowrap">
-            FANDY
-          </h2>
+            className="footer-watermark text-[8rem] md:text-[12rem] lg:text-[16rem] font-black text-text-primary/5 leading-none tracking-tighter select-none whitespace-nowrap"
+          />
         </div>
       </div>
     </footer>

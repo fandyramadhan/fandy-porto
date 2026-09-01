@@ -1,0 +1,24 @@
+{
+  "$comment": "Per-route head metadata. Read at runtime by the page components and at build time by scripts/prerender.mjs, so the HTML a crawler receives matches what the app renders.",
+  "siteUrl": "https://fandyramadhan.com",
+  "routes": {
+    "/event": {
+      "title": "Jasa Pembuatan Website Event 3 Hari Jadi · Webinar, Konferensi, Konser & Lomba",
+      "description": "Jasa pembuatan website event custom, beres dalam 3 hari kerja. Untuk webinar, workshop, bootcamp, seminar, konferensi, konser, festival, acara kampus, sampai event sport dan perlombaan. Sudah termasuk desain custom, koneksi domain, form pendaftaran otomatis, dan Google Analytics. Mulai Rp 900K.",
+      "image": "/images/og-event.jpg",
+      "imageAlt": "Jasa pembuatan website event oleh Fandy Ramadhan, beres dalam 3 hari",
+      "lang": "id-ID",
+      "locale": "id_ID",
+      "type": "website"
+    },
+    "/event-portfolio": {
+      "title": "30+ Contoh Website Event · Portfolio Desain Konferensi, Konser & Lomba",
+      "description": "Kumpulan 30+ contoh desain website event: konferensi, summit, festival, konser, event olahraga, perlombaan, webinar, dan gathering komunitas. Semuanya custom, rapi, dan responsive di semua device.",
+      "image": "/images/og-event.jpg",
+      "imageAlt": "Portfolio desain website event oleh Fandy Ramadhan",
+      "lang": "id-ID",
+      "locale": "id_ID",
+      "type": "website"
+    }
+  }
+}

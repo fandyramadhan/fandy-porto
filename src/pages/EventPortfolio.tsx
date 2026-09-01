@@ -8,14 +8,16 @@ import Footer from "../components/Footer";
 import EventProjectCard from "../components/EventProjectCard";
 import EventProjectLightbox from "../components/EventProjectLightbox";
 import EventScarcityBanner from "../components/EventScarcityBanner";
+import EventMobileCTA from "../components/EventMobileCTA";
+import WhatsAppCta from "../components/WhatsAppCta";
 import { useDocumentMeta } from "../hooks/useDocumentMeta";
-import { useSmoothScroll } from "../hooks/useSmoothScroll";
+import { useLenis } from "../hooks/useLenis";
 import {
   eventProjects,
   eventProjectCategories,
   type EventProject,
 } from "../data/eventProjects";
-import { eventWhatsappUrl } from "../data/eventData";
+import seoRoutes from "../data/seoRoutes.json";
 
 const INITIAL_COUNT = 6;
 const LOAD_STEP = 4;
@@ -56,13 +58,10 @@ const jsonLd = [
 ];
 
 const EventPortfolio = () => {
-  useSmoothScroll();
+  useLenis();
   useDocumentMeta({
-    title: "Portfolio Website Event · Fandy Ramadhan",
-    description:
-      "Kumpulan desain website event: konferensi, summit, festival, webinar, dan gathering komunitas. Semua dibuat custom, rapi, dan responsive di semua device.",
+    ...seoRoutes.routes["/event-portfolio"],
     canonicalPath: "/event-portfolio",
-    lang: "id-ID",
     jsonLd,
   });
 
@@ -180,10 +179,15 @@ const EventPortfolio = () => {
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-text-primary">
                 Semua Desain Event
               </h1>
+              <span className="inline-flex items-center gap-2 border border-accent/40 bg-accent/[0.07] rounded-full px-4 py-1.5 mt-5 text-accent text-xs font-semibold">
+                <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+                {eventProjects.length}+ contoh kerjaan
+              </span>
               <p className="text-text-muted text-base mt-6 max-w-xl leading-relaxed">
-                Konferensi, summit, festival, webinar, sampai gathering
-                komunitas. Semuanya rapi dan responsive di semua device. Arahin
-                kursor buat lihat gerakannya, klik buat lihat versi penuhnya.
+                Konferensi, summit, festival, konser, event olahraga, lomba,
+                sampai gathering komunitas. Semuanya rapi dan responsive di
+                semua device. Arahin kursor buat lihat gerakannya, klik buat
+                lihat versi penuhnya.
               </p>
             </motion.div>
 
@@ -227,6 +231,7 @@ const EventPortfolio = () => {
             </p>
 
             {/* Grid */}
+            <h2 className="sr-only">Daftar desain website event</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {shown.map((project, index) => (
                 <motion.div
@@ -298,14 +303,13 @@ const EventPortfolio = () => {
                 sesuaikan sama tema dan kebutuhan event lu.
               </p>
               <div className="flex items-center justify-center gap-4 flex-wrap">
-                <a
-                  href={eventWhatsappUrl("dari halaman portfolio")}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <WhatsAppCta
+                  source="portfolio-cta"
+                  context="dari halaman portfolio"
                   className="inline-flex items-center gap-2 bg-accent text-bg text-sm font-semibold rounded-full px-8 py-3 hover:bg-accent-dark transition">
                   <FaWhatsapp className="w-4 h-4" />
                   Chat via WhatsApp
-                </a>
+                </WhatsAppCta>
                 <Link
                   to="/event#harga"
                   className="border border-border text-text-primary text-sm font-semibold rounded-full px-8 py-3 hover:border-accent/40 transition">
@@ -325,6 +329,8 @@ const EventPortfolio = () => {
         project={activeProject}
         onClose={() => setActiveProject(null)}
       />
+
+      <EventMobileCTA hidden={activeProject !== null} />
     </div>
   );
 };

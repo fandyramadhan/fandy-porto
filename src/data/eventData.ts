@@ -12,6 +12,20 @@ export const eventWhatsappUrl = (context?: string) => {
   return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`;
 };
 
+/**
+ * CTA copy, tuned to where the reader is on the page. Early on the ask is
+ * light ("just ask"), mid-page it invites them to describe their event, and
+ * near the pricing it names the action they are ready to take.
+ */
+export const eventCtas = {
+  /** Cold: first screen, still deciding whether to care. */
+  cold: "Tanya Dulu, Gratis Kok",
+  /** Warm: has seen the work and the process. */
+  warm: "Ceritain Event Lu",
+  /** Ready: at the price, only needs the last nudge. */
+  ready: "Chat via WhatsApp",
+};
+
 export const eventHero = {
   eyebrow: "Website Acara · Spesialis Event",
   headline: "Website event lu, beres dalam 3 hari.",
@@ -23,26 +37,68 @@ export const eventHero = {
   stats: [
     { value: "3 Hari", label: "Pengerjaan,\nBisa Express" },
     { value: "100%", label: "Desain Custom,\nBukan Template" },
-    { value: "2x", label: "Revisi\nTermasuk Paket" },
+    { value: "30+", label: "Contoh Desain\nEvent Siap Dilihat" },
     { value: "7 Hari", label: "Support\nPasca-launch" },
   ],
 };
 
+/** Running promo, surfaced by the popup and the mobile sticky bar. */
+export const eventPromo = {
+  tier: "Terima Beres",
+  originalPrice: "Rp 2,2Jt",
+  price: "Rp 1,6Jt",
+  quotaNote: "Cuma buat 2 orang minggu ini",
+  capacityNote: "Seminggu gua cuma nerima 3 project",
+  headline: "Klaim harga promo minggu ini",
+  body: "Paket Terima Beres lagi turun harga. Website event lu beres dalam 3 hari, udah termasuk desain, deploy, koneksi domain, form registrasi, dan Google Analytics.",
+  cta: "Klaim Harga Promo",
+  waContext: "klaim promo Terima Beres Rp 1,6Jt",
+};
+
+/**
+ * Plain-language explanation of the service, sitting near the bottom of the
+ * page. It gives search engines real sentences to match long-tail queries
+ * against ("bikin website seminar kampus", "landing page fun run"), and gives
+ * visitors who scrolled that far the full picture in one block.
+ */
+export const eventAbout = {
+  eyebrow: "Tentang Layanan Ini",
+  heading: "Jasa pembuatan website event, dari brief sampai online.",
+  paragraphs: [
+    "Website event itu satu halaman yang jadi pusat informasi acara lu: tanggal, lokasi, susunan acara, profil pembicara atau pengisi, harga tiket, dan form pendaftaran. Semuanya di satu link yang gampang dibagikan di Instagram, WhatsApp, atau poster. Calon peserta nggak perlu nanya berulang-ulang, dan lu nggak perlu jawab pertanyaan yang sama tiap hari.",
+    "Gua kerjain sendiri dari desain sampai jadi website beneran, bukan pakai template jadi. Rata-rata 3 hari kerja untuk paket Terima Beres, sudah termasuk koneksi ke domain punya lu, form pendaftaran yang datanya masuk otomatis ke Google Sheet, dan Google Analytics biar keliatan berapa orang yang buka halaman dan datang dari mana.",
+    "Semua halaman dibangun responsive, jadi tampilannya tetap rapi dibuka dari HP, tablet, maupun desktop. Ini penting karena mayoritas calon peserta bakal buka link acara lu dari HP.",
+  ],
+  listHeading: "Jenis event yang sering gua kerjain",
+  eventList: [
+    "Webinar, workshop, kelas online, dan bootcamp berbatch",
+    "Seminar, konferensi, dan summit beberapa hari dengan banyak pembicara",
+    "Konser, festival musik, dan pensi sekolah",
+    "Fun run, turnamen, dan perlombaan dengan kategori peserta",
+    "Acara kampus, study tour, dan lomba antar-jurusan",
+    "Peluncuran produk, meet-up komunitas, dan gathering member",
+    "Pameran, expo, dan job fair",
+    "Halal bihalal, reuni, dan acara internal perusahaan",
+  ],
+  closing:
+    "Nggak nemu jenis acara lu di daftar itu? Selama event-nya butuh orang tau infonya atau daftar, halamannya tetap bisa dibikin. Kabarin aja detailnya.",
+};
+
 export const eventTypes = [
   {
-    name: "Webinar & Talkshow",
+    name: "Webinar, Workshop & Bootcamp",
     description:
-      "Info pembicara, jadwal, dan link daftar dalam satu halaman yang rapi.",
-  },
-  {
-    name: "Workshop & Bootcamp",
-    description:
-      "Cocok buat batch berulang, template bisa dipakai lagi tiap sesi baru.",
+      "Sesi online maupun on-site: info pembicara, jadwal, dan link daftar dalam satu halaman. Cocok buat batch berulang, template dipakai lagi tiap angkatan baru.",
   },
   {
     name: "Konferensi & Seminar",
     description:
       "Multi-section: pembicara, sponsor, jadwal beberapa hari, tiket bertingkat.",
+  },
+  {
+    name: "Event Sport & Perlombaan",
+    description:
+      "Fun run, turnamen, atau lomba antar-tim. Kategori peserta, rute, hadiah, dan pendaftaran per kategori dalam satu halaman.",
   },
   {
     name: "Acara Kampus & Sekolah",
@@ -65,14 +121,20 @@ export const eventProblems = [
   {
     num: "01",
     text: "Info event nyebar di caption IG dan chat WA, orang gampang lupa atau salah paham jadwal.",
+    solution:
+      "Satu link resmi yang isinya lengkap dan selalu update. Sekali share, semua orang lihat info yang sama.",
   },
   {
     num: "02",
     text: "Nggak ada satu tempat buat calon peserta cek detail, lihat pembicara, dan langsung daftar.",
+    solution:
+      "Detail, pembicara, dan form pendaftaran ada di satu halaman. Dari penasaran ke daftar cuma butuh satu scroll.",
   },
   {
     num: "03",
     text: "Sponsor atau pihak eksternal susah percaya kalau event-nya cuma dipromosikan lewat story doang.",
+    solution:
+      "Halaman dengan domain sendiri bikin proposal lu langsung keliatan serius di mata sponsor.",
   },
 ];
 
@@ -147,7 +209,7 @@ export const eventPricing: EventPricingTier[] = [
       "2x revisi termasuk",
       "Support 7 hari pasca-launch",
     ],
-    cta: "Chat via WhatsApp",
+    cta: "Ambil Paket Ini",
     waContext: "paket Terima Beres promo Rp 1,6Jt",
   },
   {
@@ -170,19 +232,14 @@ export const eventPricing: EventPricingTier[] = [
 
 export const eventFaqs = [
   {
-    question: "Websitenya berapa halaman?",
-    answer:
-      "Standarnya 1 halaman yang isinya lengkap dari atas ke bawah (biasa disebut landing page), biar cepat dibangun dan gampang di-scroll calon peserta. Butuh lebih dari 1 halaman? Ada di paket Premium.",
-  },
-  {
-    question: "Domain-nya dari mana?",
-    answer:
-      "Domain lu beli sendiri (bisa dibantu rekomendasi penyedia), gua yang urus koneksinya ke halaman sampai bisa diakses via domain itu.",
-  },
-  {
     question: "Berapa lama pengerjaannya?",
     answer:
       "Rata-rata 3 hari kerja untuk paket Terima Beres, tergantung kompleksitas dan seberapa cepat brief-nya lengkap.",
+  },
+  {
+    question: "Websitenya berapa halaman?",
+    answer:
+      "Standarnya 1 halaman yang isinya lengkap dari atas ke bawah (biasa disebut landing page), biar cepat dibangun dan gampang di-scroll calon peserta. Butuh lebih dari 1 halaman? Ada di paket Premium.",
   },
   {
     question: "Kalau butuh cepat banget gimana?",
@@ -190,14 +247,19 @@ export const eventFaqs = [
       "Bisa, ada opsi percepatan pengerjaan (rush) dengan biaya tambahan. Kabarin timeline lu di awal biar bisa gua atur.",
   },
   {
+    question: "Domain-nya dari mana?",
+    answer:
+      "Domain lu beli sendiri (bisa dibantu rekomendasi penyedia), gua yang urus koneksinya ke halaman sampai bisa diakses via domain itu.",
+  },
+  {
     question: "Bisa request desain sesuai referensi?",
     answer:
       "Bisa banget. Kirim referensi visual atau contoh yang lu suka, nanti gua sesuaikan dengan tetap custom, bukan asal contek.",
   },
   {
-    question: "Bisa dapet notifikasi WhatsApp tiap ada yang daftar?",
+    question: "Bisa custom form submission atau pendaftaran?",
     answer:
-      "Bisa, ini fitur tambahan (add-on) di luar paket standar karena butuh layanan berlangganan terpisah. Kabarin aja kalau mau ditambahkan, nanti gua kasih tau biayanya.",
+      "Bisa, field-nya diatur sesuai kebutuhan event lu: nama, kontak, asal instansi, pilihan sesi, ukuran kaos, sampai upload bukti transfer. Datanya masuk otomatis dan bisa dibuatkan dashboard khusus buat lihat semua pendaftar dalam satu tabel, difilter, dan diekspor ke Excel, jadi lu nggak perlu buka spreadsheet mentah tiap mau cek. Kabarin aja kebutuhannya, nanti gua sesuaikan.",
   },
   {
     question: "Setelah live, masih bisa update konten?",

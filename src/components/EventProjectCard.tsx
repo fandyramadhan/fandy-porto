@@ -40,13 +40,12 @@ const EventProjectCard = ({ project, onOpen, eager = false }: Props) => {
       onMouseLeave={stop}
       onFocus={start}
       onBlur={stop}
-      aria-label={`Putar preview ${project.name}`}
       className="group block w-full text-left cursor-pointer">
       {/* Media */}
       <div className="aspect-video rounded-2xl bg-surface border border-border overflow-hidden relative group-hover:-translate-y-2 group-focus-visible:-translate-y-2 transition-transform duration-500">
         {/* Still frame — always present, so the card never goes blank */}
         <img
-          src={posterSrc(project.id)}
+          src={posterSrc(project)}
           alt={`Preview website event ${project.name} oleh Fandy Ramadhan`}
           title={`${project.name} · ${project.category}`}
           loading={eager ? "eager" : "lazy"}
@@ -58,8 +57,8 @@ const EventProjectCard = ({ project, onOpen, eager = false }: Props) => {
         {hovered && (
           <video
             ref={videoRef}
-            src={videoSrc(project.id)}
-            poster={posterSrc(project.id)}
+            src={videoSrc(project)}
+            poster={posterSrc(project)}
             muted
             loop
             playsInline
@@ -104,6 +103,8 @@ const EventProjectCard = ({ project, onOpen, eager = false }: Props) => {
           {project.category}
         </span>
       </div>
+
+      <span className="sr-only">Putar preview</span>
     </button>
   );
 };

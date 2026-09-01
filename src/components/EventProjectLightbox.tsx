@@ -61,8 +61,8 @@ const EventProjectLightbox = ({ project, onClose }: Props) => {
             {/* Video */}
             <div className="rounded-2xl overflow-hidden border border-border bg-surface">
               <video
-                src={videoSrc(project.id)}
-                poster={posterSrc(project.id)}
+                src={videoSrc(project)}
+                poster={posterSrc(project)}
                 autoPlay
                 muted
                 loop

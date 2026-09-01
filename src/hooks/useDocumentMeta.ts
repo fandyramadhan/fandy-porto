@@ -7,6 +7,9 @@ type Meta = {
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
   /** Overrides <html lang> and og:locale while the route is mounted. */
   lang?: string;
+  /** Route-specific social preview image (absolute path or full URL). */
+  image?: string;
+  imageAlt?: string;
 };
 
 const SITE_URL =
@@ -66,6 +69,8 @@ export function useDocumentMeta({
   canonicalPath,
   jsonLd,
   lang,
+  image,
+  imageAlt,
 }: Meta) {
   useEffect(() => {
     const prevTitle = document.title;
@@ -90,6 +95,16 @@ export function useDocumentMeta({
       setMeta("og:locale", lang.replace("-", "_"), "property");
     }
 
+    if (image) {
+      const url = image.startsWith("http") ? image : `${SITE_URL}${image}`;
+      setMeta("og:image", url, "property");
+      setMeta("twitter:image", url);
+      if (imageAlt) {
+        setMeta("og:image:alt", imageAlt, "property");
+        setMeta("twitter:image:alt", imageAlt);
+      }
+    }
+
     if (jsonLd) {
       setJsonLd(jsonLd);
     } else {
@@ -101,5 +116,5 @@ export function useDocumentMeta({
       if (lang) document.documentElement.lang = prevLang;
       removeJsonLd();
     };
-  }, [title, description, canonicalPath, jsonLd, lang]);
+  }, [title, description, canonicalPath, jsonLd, lang, image, imageAlt]);
 }

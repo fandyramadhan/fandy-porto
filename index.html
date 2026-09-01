@@ -12,6 +12,21 @@
       href="/images/hero-3d.webp"
       media="(min-width: 1024px)"
       fetchpriority="high" />
+    <!-- Fonts are self-hosted (see @font-face in index.css). The two weights
+         used above the fold are preloaded so text paints without a swap. -->
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/fonts/sora-400.woff2"
+      crossorigin />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/fonts/sora-700.woff2"
+      crossorigin />
+
     <link rel="dns-prefetch" href="https://wa.me" />
     <link rel="preconnect" href="https://wa.me" crossorigin />
 
@@ -103,23 +118,74 @@
       }
     </script>
 
-    <!-- Microsoft Clarity (analytics, heatmap, session recording) -->
-    <script type="text/javascript">
-      (function (c, l, a, r, i, t, y) {
+    <!-- Analytics: Microsoft Clarity + Meta Pixel.
+         Both snippets queue their calls (clarity.q / fbq.queue) and replay
+         them once their library arrives, so the tracking calls fire right
+         away while the ~200 KB of library code is fetched after load instead
+         of competing with first paint. No events are lost, they are just
+         sent a moment later. -->
+    <script>
+      // Clarity stub
+      (function (c, a, i) {
         c[a] =
           c[a] ||
           function () {
             (c[a].q = c[a].q || []).push(arguments);
           };
-        t = l.createElement(r);
-        t.async = 1;
-        t.src = "https://www.clarity.ms/tag/" + i;
-        y = l.getElementsByTagName(r)[0];
-        y.parentNode.insertBefore(t, y);
-      })(window, document, "clarity", "script", "wmldw28i1c");
+        c[a].i = i;
+      })(window, "clarity", "wmldw28i1c");
+
+      // Meta Pixel stub
+      !(function (f, n) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+      })(window);
+      fbq("init", "715359714827398");
+      fbq("track", "PageView");
+
+      // Fetch both libraries once the page has finished loading.
+      (function () {
+        var done = false;
+        function loadAnalytics() {
+          if (done) return;
+          done = true;
+          [
+            "https://www.clarity.ms/tag/" + window.clarity.i,
+            "https://connect.facebook.net/en_US/fbevents.js",
+          ].forEach(function (src) {
+            var el = document.createElement("script");
+            el.async = true;
+            el.src = src;
+            document.head.appendChild(el);
+          });
+        }
+        if (document.readyState === "complete") loadAnalytics();
+        else window.addEventListener("load", loadAnalytics);
+        // Safety net in case a stalled subresource delays the load event.
+        setTimeout(loadAnalytics, 5000);
+      })();
     </script>
   </head>
   <body>
+    <!-- Meta Pixel fallback for visitors without JavaScript -->
+    <noscript
+      ><img
+        height="1"
+        width="1"
+        style="display: none"
+        alt=""
+        src="https://www.facebook.com/tr?id=715359714827398&amp;ev=PageView&amp;noscript=1"
+    /></noscript>
+
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

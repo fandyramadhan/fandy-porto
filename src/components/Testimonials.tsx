@@ -71,17 +71,23 @@ const Testimonials = () => {
           </motion.div>
 
           {/* Navigation dots */}
-          <div className="flex gap-2 mt-8">
+          <div className="flex gap-5 mt-8">
             {testimonials.map((_, index) => (
               <button
                 key={index}
+                type="button"
                 onClick={() => setActiveIndex(index)}
-                className={`w-2.5 h-2.5 rounded-full transition ${
-                  index === activeIndex
-                    ? "bg-accent"
-                    : "bg-border hover:bg-text-muted"
-                }`}
-              />
+                aria-label={`Testimonial ${index + 1}`}
+                aria-current={index === activeIndex}
+                className="w-6 h-6 -m-1.5 flex items-center justify-center group">
+                <span
+                  className={`w-2.5 h-2.5 rounded-full transition ${
+                    index === activeIndex
+                      ? "bg-accent"
+                      : "bg-border group-hover:bg-text-muted"
+                  }`}
+                />
+              </button>
             ))}
           </div>
         </div>

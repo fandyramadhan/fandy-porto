@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
-import { eventWhatsappUrl } from "../data/eventData";
+import WhatsAppCta from "./WhatsAppCta";
 
 // Nav for the event pages, mirroring the original event brief
 // (Jenis Event · Portofolio · Proses · Harga · FAQ). Items carry either a
@@ -105,11 +105,13 @@ const EventNavbar = () => {
             to="/event"
             onClick={() => setMobileOpen(false)}
             className="flex items-center gap-2.5">
+            {/* Decorative: the wordmark next to it already names the site. */}
             <img
               src="/images/logo-fr.svg"
-              alt="Fandy Ramadhan"
-              title="Fandy Ramadhan"
-              className="h-8"
+              alt=""
+              width="32"
+              height="32"
+              className="h-8 w-auto"
             />
             <span className="text-lg font-bold tracking-tight text-text-primary">
               Fandy Ramadhan
@@ -128,14 +130,12 @@ const EventNavbar = () => {
           </div>
 
           {/* Desktop CTA */}
-          <a
-            href={eventWhatsappUrl()}
-            target="_blank"
-            rel="noopener noreferrer"
+          <WhatsAppCta
+            source="navbar"
             className="hidden lg:inline-flex items-center gap-2 bg-accent text-bg text-sm font-semibold rounded-full px-5 py-2.5 hover:bg-accent-dark transition">
             <FaWhatsapp className="w-4 h-4" />
             Chat via WhatsApp
-          </a>
+          </WhatsAppCta>
 
           {/* Mobile hamburger */}
           <button
@@ -169,19 +169,19 @@ const EventNavbar = () => {
                 />
               </motion.div>
             ))}
-            <motion.a
-              href={eventWhatsappUrl()}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => setMobileOpen(false)}
+            <motion.div
               initial={{ opacity: 0, x: -40 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -40 }}
-              transition={{ delay: eventNavItems.length * 0.08, duration: 0.4 }}
-              className="inline-flex items-center gap-2 bg-accent text-bg text-base font-semibold rounded-full px-6 py-3 mt-4 hover:bg-accent-dark transition">
-              <FaWhatsapp className="w-4 h-4" />
-              Chat via WhatsApp
-            </motion.a>
+              transition={{ delay: eventNavItems.length * 0.08, duration: 0.4 }}>
+              <WhatsAppCta
+                source="navbar-mobile"
+                onClick={() => setMobileOpen(false)}
+                className="inline-flex items-center gap-2 bg-accent text-bg text-base font-semibold rounded-full px-6 py-3 mt-4 hover:bg-accent-dark transition">
+                <FaWhatsapp className="w-4 h-4" />
+                Chat via WhatsApp
+              </WhatsAppCta>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

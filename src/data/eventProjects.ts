@@ -10,11 +10,16 @@ export type EventProject = {
   name: string;
   category: EventProjectCategory;
   description: string;
+  /** Container of the source clip. Defaults to webm for the original batch. */
+  ext?: "webm" | "mp4";
 };
 
 export const eventProjectCategories = [
   "Conference",
   "Summit",
+  "Concert",
+  "Sport",
+  "Competition",
   "Festival",
   "Community",
   "Developer Event",
@@ -23,10 +28,28 @@ export const eventProjectCategories = [
 
 export type EventProjectCategory = (typeof eventProjectCategories)[number];
 
-export const videoSrc = (id: string) => `/video/event-showreel/${id}.webm`;
-export const posterSrc = (id: string) => `/images/event-showreel/${id}.webp`;
+export const videoSrc = (project: EventProject) =>
+  `/video/event-showreel/${project.id}.${project.ext ?? "webm"}`;
+export const posterSrc = (project: EventProject) =>
+  `/images/event-showreel/${project.id}.webp`;
 
 export const eventProjects: EventProject[] = [
+  {
+    id: "sonorous",
+    name: "Sonorous",
+    category: "Concert",
+    description:
+      "Festival musik elektronik dengan line-up per genre, info batas usia, dan alur beli tiket yang tegas.",
+    ext: "mp4",
+  },
+  {
+    id: "running-club",
+    name: "Running Club",
+    category: "Competition",
+    description:
+      "Halaman lomba lari 10K lengkap dengan tanggal, jam start-finish, titik lokasi, dan tombol pendaftaran.",
+    ext: "mp4",
+  },
   {
     id: "confex",
     name: "ConfexPro",
@@ -139,7 +162,107 @@ export const eventProjects: EventProject[] = [
     description:
       "Halaman venue di Florence untuk konser dan festival, lengkap dengan form request penawaran.",
   },
+  {
+    id: "sonixa",
+    name: "Sonixa",
+    category: "Concert",
+    description:
+      "Halaman artis hip-hop dengan rilisan terbaru, jadwal tur, diskografi, dan pendaftaran newsletter.",
+    ext: "mp4",
+  },
+  {
+    id: "playza",
+    name: "Playza",
+    category: "Concert",
+    description:
+      "Situs band dengan galeri tur, album, dan halaman kontak booking yang gampang dijangkau.",
+    ext: "mp4",
+  },
+  {
+    id: "night-club",
+    name: "Night Club",
+    category: "Concert",
+    description:
+      "Venue live music dengan galeri suasana, jadwal penampil per hall, dan form reservasi meja.",
+    ext: "mp4",
+  },
+  {
+    id: "cycling",
+    name: "Cycling",
+    category: "Competition",
+    description:
+      "Event bersepeda dengan detail rute, kategori peserta, dan pendaftaran langsung dari hero.",
+    ext: "mp4",
+  },
+  {
+    id: "climbr",
+    name: "Climbr",
+    category: "Sport",
+    description:
+      "Gym panjat tebing dengan info level dinding, paket membership, dan booking sesi pertama.",
+    ext: "mp4",
+  },
+  {
+    id: "rally-padel",
+    name: "Rally Padel",
+    category: "Sport",
+    description:
+      "Booking lapangan padel per jam, paket membership, dan FAQ buat pemain yang baru mulai.",
+    ext: "mp4",
+  },
+  {
+    id: "ballor",
+    name: "Ballor",
+    category: "Sport",
+    description:
+      "Akademi sepak bola anak dengan program latihan per usia, jadwal sesi, dan trial gratis.",
+    ext: "mp4",
+  },
+  {
+    id: "gelaf",
+    name: "Gelaf",
+    category: "Sport",
+    description:
+      "Klub golf dengan driving range, kelas pelatihan, dan pendaftaran membership bertingkat.",
+    ext: "mp4",
+  },
+  {
+    id: "xpedition",
+    name: "Xpedition",
+    category: "Sport",
+    description:
+      "Trip petualangan alam terbuka dengan paket perjalanan, jadwal keberangkatan, dan booking online.",
+    ext: "mp4",
+  },
+  {
+    id: "outdoor",
+    name: "Outdoor",
+    category: "Sport",
+    description:
+      "Aktivitas luar ruang yang bisa dikustom: pilih kegiatan, grup, penginapan, lalu booking trip.",
+    ext: "mp4",
+  },
+  {
+    id: "livepower",
+    name: "LivePower",
+    category: "Sport",
+    description:
+      "Coaching sepeda dan wellness dengan program personal, profil pelatih, dan jadwal sesi.",
+    ext: "mp4",
+  },
+  {
+    id: "yogafit",
+    name: "YogaFit",
+    category: "Sport",
+    description:
+      "Studio yoga dengan jadwal kelas, profil instruktur, dan pendaftaran membership yang ringkas.",
+    ext: "mp4",
+  },
 ];
 
-/** The four shown on /event before visitors continue to /event-portfolio. */
-export const featuredEventProjects = eventProjects.slice(0, 4);
+/** Shown on /event before visitors continue to /event-portfolio. */
+const featuredIds = ["sonorous", "running-club", "crowdix", "stagefy"];
+
+export const featuredEventProjects = featuredIds
+  .map((id) => eventProjects.find((p) => p.id === id)!)
+  .filter(Boolean);

@@ -7,32 +7,39 @@ import {
   Check,
   GraduationCap,
   Landmark,
-  Mic,
   Music,
   Presentation,
   Rocket,
+  Trophy,
+  X,
 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import EventNavbar from "../components/EventNavbar";
 import Footer from "../components/Footer";
 import { useDocumentMeta } from "../hooks/useDocumentMeta";
-import { useSmoothScroll } from "../hooks/useSmoothScroll";
+import { useLenis } from "../hooks/useLenis";
 import EventProjectCard from "../components/EventProjectCard";
 import EventScarcityBanner from "../components/EventScarcityBanner";
 import EventTestimonials from "../components/EventTestimonials";
 import EventProjectLightbox from "../components/EventProjectLightbox";
+import EventPromoPopup from "../components/EventPromoPopup";
+import EventMobileCTA from "../components/EventMobileCTA";
+import WhatsAppCta from "../components/WhatsAppCta";
+import type { CtaSource } from "../lib/tracking";
 import {
   featuredEventProjects,
   type EventProject,
 } from "../data/eventProjects";
+import seoRoutes from "../data/seoRoutes.json";
 import {
+  eventAbout,
+  eventCtas,
   eventFaqs,
   eventHero,
   eventPricing,
   eventProblems,
   eventProcess,
   eventTypes,
-  eventWhatsappUrl,
 } from "../data/eventData";
 
 const fadeUp = {
@@ -48,57 +55,156 @@ const inView = {
 
 // Icon per event type, index-matched to eventTypes in eventData.
 const eventTypeIcons = [
-  Mic,
   Presentation,
   Landmark,
+  Trophy,
   GraduationCap,
   Rocket,
   Music,
 ];
+
+const SITE = "https://fandyramadhan.com";
+const PAGE = `${SITE}/event`;
+
+const prices = eventPricing.map((tier) => tier.priceValue);
+
+const provider = {
+  "@type": "Person",
+  name: "Fandy Ramadhan",
+  jobTitle: "Senior Product Designer",
+  url: SITE,
+  image: `${SITE}/images/fandy-photo.webp`,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Depok",
+    addressRegion: "Jawa Barat",
+    addressCountry: "ID",
+  },
+  sameAs: [
+    "https://instagram.com/fandyyramadhan",
+    "https://linkedin.com/in/fandyramadhan",
+    "https://dribbble.com/fandyramadhan",
+    "https://behance.net/fandyramadhan2",
+  ],
+};
 
 const jsonLd = [
   {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Home",
-        item: "https://fandyramadhan.com/",
-      },
+      { "@type": "ListItem", position: 1, name: "Home", item: `${SITE}/` },
       {
         "@type": "ListItem",
         position: 2,
         name: "Jasa Pembuatan Website Event",
-        item: "https://fandyramadhan.com/event",
+        item: PAGE,
       },
     ],
   },
   {
     "@context": "https://schema.org",
     "@type": "Service",
+    "@id": `${PAGE}#service`,
     name: "Jasa Pembuatan Website Event",
-    serviceType: "Pembuatan website event & landing page acara",
-    description:
-      "Jasa pembuatan website event custom untuk webinar, workshop, seminar, konferensi, dan festival. Selesai dalam 3 hari kerja, sudah termasuk desain, deploy, koneksi domain, dan form registrasi.",
-    url: "https://fandyramadhan.com/event",
-    provider: {
-      "@type": "Person",
-      name: "Fandy Ramadhan",
-      jobTitle: "Senior Product Designer",
-      url: "https://fandyramadhan.com/",
+    alternateName: [
+      "Jasa Bikin Website Event",
+      "Jasa Landing Page Acara",
+      "Jasa Website Pendaftaran Event",
+    ],
+    serviceType: "Pembuatan website event dan landing page acara",
+    description: eventAbout.paragraphs[0],
+    url: PAGE,
+    image: `${SITE}/images/og-event.jpg`,
+    inLanguage: "id-ID",
+    provider,
+    areaServed: [
+      { "@type": "Country", name: "Indonesia" },
+      { "@type": "City", name: "Jakarta" },
+      { "@type": "City", name: "Depok" },
+      { "@type": "City", name: "Bandung" },
+      { "@type": "City", name: "Surabaya" },
+      { "@type": "City", name: "Yogyakarta" },
+    ],
+    availableChannel: {
+      "@type": "ServiceChannel",
+      serviceUrl: PAGE,
+      availableLanguage: [
+        { "@type": "Language", name: "Indonesian", alternateName: "id" },
+        { "@type": "Language", name: "English", alternateName: "en" },
+      ],
     },
-    areaServed: { "@type": "Country", name: "Indonesia" },
-    availableLanguage: ["id", "en"],
-    offers: eventPricing.map((tier) => ({
-      "@type": "Offer",
-      name: `Paket ${tier.tier}`,
-      description: tier.features.join(", "),
-      price: String(tier.priceValue),
+    // The kinds of events these pages get built for. Gives search engines
+    // concrete terms to match long-tail queries against.
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Jenis event yang dilayani",
+      itemListElement: eventAbout.eventList.map((item) => ({
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: item },
+      })),
+    },
+    offers: {
+      "@type": "AggregateOffer",
       priceCurrency: "IDR",
+      lowPrice: String(Math.min(...prices)),
+      highPrice: String(Math.max(...prices)),
+      offerCount: String(eventPricing.length),
       availability: "https://schema.org/InStock",
-      url: "https://fandyramadhan.com/event",
+      offers: eventPricing.map((tier) => ({
+        "@type": "Offer",
+        name: `Paket ${tier.tier}`,
+        description: tier.features.join(". "),
+        price: String(tier.priceValue),
+        priceCurrency: "IDR",
+        availability: "https://schema.org/InStock",
+        url: `${PAGE}#harga`,
+        itemOffered: {
+          "@type": "Service",
+          name: `Website event paket ${tier.tier}`,
+        },
+      })),
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": PAGE,
+    url: PAGE,
+    name: "Jasa Pembuatan Website Event",
+    inLanguage: "id-ID",
+    description: eventAbout.paragraphs[0],
+    primaryImageOfPage: {
+      "@type": "ImageObject",
+      url: `${SITE}/images/og-event.jpg`,
+      width: 1200,
+      height: 630,
+    },
+    about: { "@id": `${PAGE}#service` },
+    isPartOf: {
+      "@type": "WebSite",
+      url: `${SITE}/`,
+      name: "Fandy Ramadhan",
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: "Cara pesan website event",
+    description:
+      "Empat langkah dari brief sampai halaman event lu online dan siap dibagikan.",
+    totalTime: "P3D",
+    estimatedCost: {
+      "@type": "MonetaryAmount",
+      currency: "IDR",
+      value: String(Math.min(...prices)),
+    },
+    step: eventProcess.map((item, i) => ({
+      "@type": "HowToStep",
+      position: i + 1,
+      name: item.title,
+      text: item.body,
+      url: `${PAGE}#proses`,
     })),
   },
   {
@@ -113,19 +219,16 @@ const jsonLd = [
 ];
 
 const Event = () => {
-  useSmoothScroll();
+  useLenis();
   useDocumentMeta({
-    title:
-      "Jasa Pembuatan Website Event · Webinar, Workshop & Konferensi · Fandy Ramadhan",
-    description:
-      "Jasa bikin website event custom, beres dalam 3 hari. Cocok untuk webinar, workshop, seminar, konferensi, acara kampus, sampai festival. Sudah termasuk desain, domain, dan form registrasi. Mulai Rp 900K.",
+    ...seoRoutes.routes["/event"],
     canonicalPath: "/event",
-    lang: "id-ID",
     jsonLd,
   });
 
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [activeProject, setActiveProject] = useState<EventProject | null>(null);
+  const [promoOpen, setPromoOpen] = useState(false);
 
   const heroHeadline = eventHero.headline.split(eventHero.headlineAccent);
 
@@ -171,20 +274,18 @@ const Event = () => {
               </p>
 
               <div className="flex flex-wrap items-center gap-3 mt-8">
-                <a
-                  href={eventWhatsappUrl()}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <WhatsAppCta
+                  source="hero"
                   className="inline-flex items-center gap-2 bg-accent text-bg text-sm md:text-base font-semibold rounded-full px-6 py-3 hover:bg-accent-dark transition">
                   <FaWhatsapp className="w-4 h-4" />
-                  Chat via WhatsApp
+                  {eventCtas.cold}
                   <span>↗</span>
-                </a>
-                <a
-                  href="#contoh-kerjaan"
+                </WhatsAppCta>
+                <Link
+                  to="/event-portfolio"
                   className="inline-flex items-center gap-2 border border-border text-text-primary text-sm md:text-base font-semibold rounded-full px-6 py-3 hover:border-accent/40 hover:text-accent transition">
                   Lihat Contoh Kerjaan
-                </a>
+                </Link>
               </div>
               <p className="text-text-muted text-xs mt-3">
                 Biasanya dibalas dalam 24 jam
@@ -264,13 +365,12 @@ const Event = () => {
               transition={{ duration: 0.5 }}
               className="text-text-muted text-sm mt-8">
               Nggak nemu jenis event lu di atas?{" "}
-              <a
-                href={eventWhatsappUrl("jenis event lain")}
-                target="_blank"
-                rel="noopener noreferrer"
+              <WhatsAppCta
+                source="event-types"
+                context="jenis event lain"
                 className="text-accent font-semibold hover:underline">
                 Chat aja
-              </a>
+              </WhatsAppCta>
               , kemungkinan besar tetap bisa dibantu.
             </motion.p>
           </div>
@@ -289,16 +389,14 @@ const Event = () => {
                 dari awal.
               </h2>
               <p className="text-text-muted text-sm leading-relaxed mt-5 max-w-sm">
-                Tiga hal ini yang paling sering kejadian, dan ketiganya selesai
-                begitu event lu punya satu link resmi.
+                Tiga hal ini yang paling sering kejadian. Di sebelahnya, apa
+                yang berubah begitu event lu punya satu link resmi.
               </p>
-              <a
-                href={eventWhatsappUrl()}
-                target="_blank"
-                rel="noopener noreferrer"
+              <WhatsAppCta
+                source="problem-section"
                 className="inline-flex items-center gap-2 text-accent text-sm font-semibold mt-6 hover:gap-3 transition-all">
-                Mulai dari sini ↗
-              </a>
+                {eventCtas.warm} ↗
+              </WhatsAppCta>
             </motion.div>
 
             {/* Numbered list column */}
@@ -314,9 +412,23 @@ const Event = () => {
                   <span className="text-2xl md:text-3xl font-bold tabular-nums text-text-muted/30 group-hover:text-accent transition-colors duration-300 leading-none">
                     {problem.num}
                   </span>
-                  <p className="text-text-primary text-base md:text-lg leading-relaxed">
-                    {problem.text}
-                  </p>
+                  <div>
+                    {/* The complaint */}
+                    <div className="flex items-start gap-3">
+                      <X className="w-4 h-4 text-text-muted shrink-0 mt-1.5" />
+                      <p className="text-text-primary text-base md:text-lg leading-relaxed">
+                        {problem.text}
+                      </p>
+                    </div>
+
+                    {/* What the website does about it */}
+                    <div className="flex items-start gap-3 mt-4 rounded-xl border border-accent/30 bg-accent/[0.06] px-4 py-3">
+                      <Check className="w-4 h-4 text-accent shrink-0 mt-0.5" />
+                      <p className="text-text-primary text-sm leading-relaxed">
+                        {problem.solution}
+                      </p>
+                    </div>
+                  </div>
                 </motion.div>
               ))}
             </div>
@@ -381,7 +493,7 @@ const Event = () => {
               transition={{ duration: 0.6 }}
               className="mt-16 text-center">
               <p className="text-text-muted text-sm mb-5">
-                Masih ada belasan desain event lain yang bisa lu lihat.
+                Masih ada puluhan desain event lain yang bisa lu lihat.
               </p>
               <Link
                 to="/event-portfolio"
@@ -496,10 +608,14 @@ const Event = () => {
                       </li>
                     ))}
                   </ul>
-                  <a
-                    href={eventWhatsappUrl(tier.waContext)}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <WhatsAppCta
+                    source={
+                      `pricing-${tier.tier
+                        .toLowerCase()
+                        .replace(/\s+/g, "-")}` as CtaSource
+                    }
+                    context={tier.waContext}
+                    value={tier.priceValue}
                     className={`mt-8 inline-flex items-center justify-center gap-2 text-sm font-semibold rounded-full px-6 py-3 transition ${
                       tier.featured
                         ? "bg-accent text-bg hover:bg-accent-dark"
@@ -507,7 +623,7 @@ const Event = () => {
                     }`}>
                     {tier.featured && <FaWhatsapp className="w-4 h-4" />}
                     {tier.cta}
-                  </a>
+                  </WhatsAppCta>
                 </motion.div>
               ))}
             </div>
@@ -527,14 +643,14 @@ const Event = () => {
               <span className="text-text-muted text-sm uppercase tracking-widest">
                 Sering Ditanya
               </span>
-              <motion.a
-                href={eventWhatsappUrl("ada pertanyaan lain")}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ x: 4 }}
-                className="text-accent text-sm shrink-0 ml-4">
-                Tanya Langsung ↗
-              </motion.a>
+              <motion.div whileHover={{ x: 4 }} className="shrink-0 ml-4">
+                <WhatsAppCta
+                  source="faq"
+                  context="ada pertanyaan lain"
+                  className="text-accent text-sm">
+                  Tanya Langsung ↗
+                </WhatsAppCta>
+              </motion.div>
             </div>
 
             {/* Heading */}
@@ -595,6 +711,51 @@ const Event = () => {
         {/* ── Testimoni ── */}
         <EventTestimonials />
 
+        {/* ── Service explanation (also the page's long-form SEO copy) ── */}
+        <section className="py-20 px-6 lg:px-12 border-t border-border">
+          <div className="max-w-7xl mx-auto grid lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-16">
+            <motion.div {...inView} transition={{ duration: 0.6 }}>
+              <span className="text-accent text-xs uppercase tracking-widest font-semibold">
+                {eventAbout.eyebrow}
+              </span>
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-text-primary mt-3 leading-tight">
+                {eventAbout.heading}
+              </h2>
+            </motion.div>
+
+            <motion.div
+              {...inView}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="max-w-2xl">
+              {eventAbout.paragraphs.map((paragraph) => (
+                <p
+                  key={paragraph.slice(0, 40)}
+                  className="text-text-muted text-sm md:text-base leading-relaxed mb-5">
+                  {paragraph}
+                </p>
+              ))}
+
+              <h3 className="text-text-primary font-bold text-base mt-8 mb-4">
+                {eventAbout.listHeading}
+              </h3>
+              <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-3">
+                {eventAbout.eventList.map((item) => (
+                  <li key={item} className="flex items-start gap-2.5">
+                    <Check className="w-4 h-4 text-accent shrink-0 mt-0.5" />
+                    <span className="text-text-muted text-sm leading-relaxed">
+                      {item}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+
+              <p className="text-text-muted text-sm leading-relaxed mt-6">
+                {eventAbout.closing}
+              </p>
+            </motion.div>
+          </div>
+        </section>
+
         {/* ── Final CTA ── */}
         <section className="py-24 px-6 lg:px-12 border-t border-border">
           <div className="max-w-7xl mx-auto text-center">
@@ -609,14 +770,12 @@ const Event = () => {
                 Balasan biasanya cepat. Langsung chat aja, nggak perlu isi form
                 panjang.
               </p>
-              <a
-                href={eventWhatsappUrl()}
-                target="_blank"
-                rel="noopener noreferrer"
+              <WhatsAppCta
+                source="final-cta"
                 className="inline-flex items-center gap-2 bg-accent text-bg text-sm font-semibold rounded-full px-8 py-3 hover:bg-accent-dark transition">
                 <FaWhatsapp className="w-4 h-4" />
-                Chat via WhatsApp ↗
-              </a>
+                {eventCtas.ready} ↗
+              </WhatsAppCta>
             </motion.div>
           </div>
         </section>
@@ -627,6 +786,9 @@ const Event = () => {
         project={activeProject}
         onClose={() => setActiveProject(null)}
       />
+
+      <EventPromoPopup onOpenChange={setPromoOpen} />
+      <EventMobileCTA hidden={promoOpen || activeProject !== null} />
     </div>
   );
 };

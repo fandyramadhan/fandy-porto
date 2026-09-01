@@ -68,19 +68,23 @@ const EventTestimonials = () => {
           </motion.div>
 
           {/* Navigation dots */}
-          <div className="flex gap-2 mt-8">
+          <div className="flex gap-5 mt-8">
             {eventTestimonials.map((item, index) => (
               <button
                 key={item.name}
                 type="button"
                 onClick={() => setActiveIndex(index)}
                 aria-label={`Testimoni ${index + 1}`}
-                className={`w-2.5 h-2.5 rounded-full transition ${
-                  index === activeIndex
-                    ? "bg-accent"
-                    : "bg-border hover:bg-text-muted"
-                }`}
-              />
+                aria-current={index === activeIndex}
+                className="w-6 h-6 -m-1.5 flex items-center justify-center group">
+                <span
+                  className={`w-2.5 h-2.5 rounded-full transition ${
+                    index === activeIndex
+                      ? "bg-accent"
+                      : "bg-border group-hover:bg-text-muted"
+                  }`}
+                />
+              </button>
             ))}
           </div>
         </div>
