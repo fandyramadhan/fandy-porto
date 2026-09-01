@@ -70,6 +70,7 @@ export const eventAbout = {
     "Website event itu satu halaman yang jadi pusat informasi acara lu: tanggal, lokasi, susunan acara, profil pembicara atau pengisi, harga tiket, dan form pendaftaran. Semuanya di satu link yang gampang dibagikan di Instagram, WhatsApp, atau poster. Calon peserta nggak perlu nanya berulang-ulang, dan lu nggak perlu jawab pertanyaan yang sama tiap hari.",
     "Gua kerjain sendiri dari desain sampai jadi website beneran, bukan pakai template jadi. Rata-rata 3 hari kerja untuk paket Terima Beres, sudah termasuk koneksi ke domain punya lu, form pendaftaran yang datanya masuk otomatis ke Google Sheet, dan Google Analytics biar keliatan berapa orang yang buka halaman dan datang dari mana.",
     "Semua halaman dibangun responsive, jadi tampilannya tetap rapi dibuka dari HP, tablet, maupun desktop. Ini penting karena mayoritas calon peserta bakal buka link acara lu dari HP.",
+    "Pengerjaan dilakukan online, jadi bisa melayani event di seluruh Indonesia: Jakarta, Depok, dan Jabodetabek, Bandung, Surabaya, Yogyakarta, Bali, sampai kota lainnya.",
   ],
   listHeading: "Jenis event yang sering gua kerjain",
   eventList: [
@@ -252,6 +253,11 @@ export const eventFaqs = [
     question: "Domain-nya dari mana?",
     answer:
       "Domain lu beli sendiri (bisa dibantu rekomendasi penyedia), gua yang urus koneksinya ke halaman sampai bisa diakses via domain itu.",
+  },
+  {
+    question: "Bisa bikin buat event di luar kota?",
+    answer:
+      "Bisa, semua prosesnya online jadi lokasi nggak ngaruh. Mau event lu di Jakarta, Depok, atau Jabodetabek, sampai Bandung, Surabaya, Jogja, Bali, atau kota lain di Indonesia, alurnya sama: brief lewat WhatsApp atau video call, revisi online, dan halaman langsung live begitu selesai. Nggak perlu ketemu langsung sama sekali.",
   },
   {
     question: "Bisa request desain sesuai referensi?",
