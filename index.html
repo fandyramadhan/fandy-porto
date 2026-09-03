@@ -152,12 +152,23 @@
       fbq("init", "715359714827398");
       fbq("track", "PageView");
 
-      // Fetch both libraries once the page has finished loading.
+      // Fetch both libraries once the page has finished loading, or as soon
+      // as the visitor touches the page — whichever comes first.
+      //
+      // The interaction triggers matter: tapping a WhatsApp button hands the
+      // phone over to the WhatsApp app, which can freeze this page before a
+      // queued event has been flushed. Loading on the first sign of activity
+      // means the pixel is almost always ready before any button is pressed.
       (function () {
         var done = false;
         function loadAnalytics() {
           if (done) return;
           done = true;
+          ["pointerdown", "touchstart", "keydown", "scroll"].forEach(
+            function (type) {
+              window.removeEventListener(type, loadAnalytics);
+            },
+          );
           [
             "https://www.clarity.ms/tag/" + window.clarity.i,
             "https://connect.facebook.net/en_US/fbevents.js",
@@ -168,6 +179,16 @@
             document.head.appendChild(el);
           });
         }
+
+        ["pointerdown", "touchstart", "keydown", "scroll"].forEach(
+          function (type) {
+            window.addEventListener(type, loadAnalytics, {
+              once: true,
+              passive: true,
+            });
+          },
+        );
+
         if (document.readyState === "complete") loadAnalytics();
         else window.addEventListener("load", loadAnalytics);
         // Safety net in case a stalled subresource delays the load event.
